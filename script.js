@@ -1,8 +1,28 @@
-function game() {
-    playerSelection = playerChoose();
-    computerSelection = computerPlay();
-    alert(playRound(playerSelection, computerSelection));
+let playerScore = 0;
+let computerScore = 0;
 
+function game() {
+ 
+    while (playerScore + computerScore != 5) {
+        playerSelection = playerChoose();
+        computerSelection = computerPlay();
+        result = playRound(playerSelection, computerSelection);
+        alert(result);
+        alert("The score is: YOU " + playerScore + ", COMPUTER " + computerScore);
+
+    }
+
+    if (playerScore > computerScore) {
+
+        alert("You win " + playerScore + " to " + computerScore);
+    }
+
+    else {
+
+        alert("The computer wins " + computerScore + " to " + playerScore);
+
+    }
+    
 }
 
 function computerPlay() {
@@ -37,10 +57,12 @@ function playRound (playerSelection, computerSelection) {
                 break;
             
             case "PAPER":
+                ++computerScore;
                 return "You lose! PAPER beats ROCK.";
                 break;
 
             case "SCISSORS":
+                ++playerScore;
                 return "You win! ROCK beats SCISSORS.";
                 break;
 
@@ -60,10 +82,12 @@ function playRound (playerSelection, computerSelection) {
                 break;
             
             case "SCISSORS":
+                ++computerScore;
                 return "You lose! SCISSORS beats PAPER.";
                 break;
 
             case "ROCK":
+                ++playerScore;
                 return "You win! PAPER beats ROCK.";
                 break;
 
@@ -83,10 +107,12 @@ function playRound (playerSelection, computerSelection) {
                 break;
             
             case "ROCK":
+                ++computerScore;
                 return "You lose! ROCK beats SCISSORS.";
                 break;
 
             case "PAPER":
+                ++playerScore;
                 return "You win! SCISSORS beats PAPER.";
                 break;
 
@@ -98,4 +124,23 @@ function playRound (playerSelection, computerSelection) {
 
     }
 
+}
+
+
+function add(a,b) {
+    b++;
+    return (a + b);
+}
+
+function initiate(c) {
+let b;
+test(c);
+alert(b);
+
+}
+
+function test(c) {
+    let b = 10;
+    alert(add(3,b) + c);
+    
 }
