@@ -1,13 +1,24 @@
-let playerScore = 0;
-let computerScore = 0;
+
 
 function game() {
- 
+  
+    let result;
+    let playerScore = 0;
+    let computerScore = 0;
+
     while (playerScore + computerScore != 5) {
         playerSelection = playerChoose();
         computerSelection = computerPlay();
         result = playRound(playerSelection, computerSelection);
-        alert(result);
+        if (result == 1) {
+            playerScore++;
+        }
+
+        else if (result == -1) {
+
+            computerScore++;
+
+        }
         alert("The score is: YOU " + playerScore + ", COMPUTER " + computerScore);
 
     }
@@ -35,35 +46,38 @@ function computerPlay() {
     } else return "PAPER"; 
 }
 function playerChoose() {
-let answer = prompt("Pick ROCK, PAPER, or SCISSORS");
-    if (answer.toUpperCase() != "ROCK" && answer.toUpperCase() != "PAPER" && answer.toUpperCase() != "SCISSORS") {
-        alert("Invalid entry. Please try again.");
-        playerChoose();
+    let answer = "start";
+    while (true) {
+        answer = prompt("Pick ROCK, PAPER, or SCISSORS");
+        if (answer.toUpperCase() == "ROCK" || answer.toUpperCase() == "PAPER" || answer.toUpperCase() == "SCISSORS") {
+            return answer.toUpperCase();
+        }
+        else { 
+        alert("Invalid entry. Please try again."); 
+        }    
     }
-return answer.toUpperCase();
+    }
 
-}
 
 function playRound (playerSelection, computerSelection) {
 
     if (playerSelection == "ROCK") {
 
-        let result;
-
         switch (computerSelection) {
             
             case "ROCK":
-                return "A tie! You both picked ROCK.";
+                alert("A tie! You both picked ROCK.")
+                return 0;
                 break;
             
             case "PAPER":
-                ++computerScore;
-                return "You lose! PAPER beats ROCK.";
+                alert("You lose! PAPER beats ROCK.");
+                return -1;
                 break;
 
             case "SCISSORS":
-                ++playerScore;
-                return "You win! ROCK beats SCISSORS.";
+                alert("You win! ROCK beats SCISSORS.");
+                return 1;
                 break;
 
         }
@@ -73,22 +87,21 @@ function playRound (playerSelection, computerSelection) {
 
     if (playerSelection == "PAPER") {
 
-        let result;
-
         switch (computerSelection) {
             
             case "PAPER":
-                return "A tie! You both picked PAPER.";
+                alert("A tie! You both picked PAPER.");
+                return 0;
                 break;
             
             case "SCISSORS":
-                ++computerScore;
-                return "You lose! SCISSORS beats PAPER.";
+                alert("You lose! SCISSORS beats PAPER.");
+                return -1;
                 break;
 
             case "ROCK":
-                ++playerScore;
-                return "You win! PAPER beats ROCK.";
+                alert("You win! PAPER beats ROCK.");
+                return 1;
                 break;
 
         }
@@ -98,49 +111,42 @@ function playRound (playerSelection, computerSelection) {
 
     if (playerSelection == "SCISSORS") {
 
-        let result;
-
         switch (computerSelection) {
             
             case "SCISSORS":
-                return "A tie! You both picked SCISSORS.";
+                alert ("A tie! You both picked SCISSORS.");
+                return 0;
                 break;
             
             case "ROCK":
-                ++computerScore;
-                return "You lose! ROCK beats SCISSORS.";
+                alert("You lose! ROCK beats SCISSORS.");
+                return -1;
                 break;
 
             case "PAPER":
-                ++playerScore;
-                return "You win! SCISSORS beats PAPER.";
+                alert("You win! SCISSORS beats PAPER.");
+                return 1;
                 break;
 
         }
-
-        return result;
-        alert(result);
-
 
     }
 
 }
 
 
-function add(a,b) {
-    b++;
-    return (a + b);
+function test() {
+
+    let a = 1;
+
+    while (a != 5) {
+    increment(a);
+    console.log(a);
+}
 }
 
-function initiate(c) {
-let b;
-test(c);
-alert(b);
+function increment(a) {
 
-}
-
-function test(c) {
-    let b = 10;
-    alert(add(3,b) + c);
-    
+    a++;
+    console.log(a);
 }
