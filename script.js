@@ -1,39 +1,22 @@
 
+let playerScore = 0;
+let computerScore = 0;
 
-function game() {
-  
-    let result;
-    let playerScore = 0;
-    let computerScore = 0;
+const rockbn = document.querySelector('.rock');
+const paperbn = document.querySelector('.paper');
+const scissorsbn = document.querySelector('.scissors');
 
-    while (playerScore + computerScore != 5) {
-        playerSelection = playerChoose();
-        computerSelection = computerPlay();
-        result = playRound(playerSelection, computerSelection);
-        if (result == 1) {
-            playerScore++;
-        }
+rockbn.addEventListener('click',function (){playRound("ROCK")});
+paperbn.addEventListener('click',function (){playRound("PAPER")});
+scissorsbn.addEventListener('click',function (){playRound("SCISSORS")});
 
-        else if (result == -1) {
+function playRound (playerSelection) {
+    console.log("YEP");
+    let computerSelection = computerPlay();
+    let result = whoWins(playerSelection,computerSelection);
+    scoreTracker(result);
+    checkWin(playerScore,computerScore);
 
-            computerScore++;
-
-        }
-        alert("The score is: YOU " + playerScore + ", COMPUTER " + computerScore);
-
-    }
-
-    if (playerScore > computerScore) {
-
-        alert("You win " + playerScore + " to " + computerScore);
-    }
-
-    else {
-
-        alert("The computer wins " + computerScore + " to " + playerScore);
-
-    }
-    
 }
 
 function computerPlay() {
@@ -45,21 +28,8 @@ function computerPlay() {
         return "SCISSORS";
     } else return "PAPER"; 
 }
-function playerChoose() {
-    let answer = "start";
-    while (true) {
-        answer = prompt("Pick ROCK, PAPER, or SCISSORS");
-        if (answer.toUpperCase() == "ROCK" || answer.toUpperCase() == "PAPER" || answer.toUpperCase() == "SCISSORS") {
-            return answer.toUpperCase();
-        }
-        else { 
-        alert("Invalid entry. Please try again."); 
-        }    
-    }
-    }
 
-
-function playRound (playerSelection, computerSelection) {
+function whoWins(playerSelection, computerSelection) {
 
     if (playerSelection == "ROCK") {
 
@@ -135,18 +105,41 @@ function playRound (playerSelection, computerSelection) {
 }
 
 
-function test() {
+function scoreTracker (result) {
 
-    let a = 1;
+    if (result == 1) {
+        playerScore++;
+        }
 
-    while (a != 5) {
-    increment(a);
-    console.log(a);
+    else if (result == -1) {
+
+        computerScore++;
+
+    }
+    
+    alert("The score is: YOU " + playerScore + ", COMPUTER " + computerScore);
+
 }
-}
 
-function increment(a) {
 
-    a++;
-    console.log(a);
+function checkWin(tplayerScore, tcomputerScore) {
+
+    if (tplayerScore == 5) {
+
+        alert("You win " + playerScore + " to " + computerScore);
+        }
+    
+
+        else if(tcomputerScore == 5) {
+    
+            alert("The computer wins " + computerScore + " to " + playerScore);
+
+        
+    
+        }
+
+        playerScore = 0;
+        computerScore = 0;
+
+
 }
