@@ -127,19 +127,21 @@ function checkWin(tplayerScore, tcomputerScore) {
     if (tplayerScore == 5) {
 
         alert("You win " + playerScore + " to " + computerScore);
+        playerScore = 0;
+        computerScore = 0;
         }
     
 
         else if(tcomputerScore == 5) {
     
             alert("The computer wins " + computerScore + " to " + playerScore);
-
+            playerScore = 0;
+            computerScore = 0;
         
     
         }
 
-        playerScore = 0;
-        computerScore = 0;
+      
 
 
 }
